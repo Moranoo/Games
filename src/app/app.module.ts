@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { GameListComponent } from './game-list/game-list.component';
 import { AddGameComponent } from './add-game/add-game.component';
-import { UpdateGameComponent } from './update-game/update-game.component'; 
+import { UpdateGameComponent } from './update-game/update-game.component';
 
 
 @NgModule({
