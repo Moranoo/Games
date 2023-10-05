@@ -27,8 +27,7 @@ db_config = mysql.connect(host="localhost", user="root", passwd="filou2002", dat
 
 cursor = db_config.cursor()
 
-cursor.execute(
-  "CREATE TABLE IF NOT EXISTS video_games (id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, popularite INT, title VARCHAR(255), genre VARCHAR(255), note_utilisateur VARCHAR(100), nombre_vote VARCHAR(100), histoire TEXT)")
+cursor.execute("CREATE TABLE IF NOT EXISTS video_games (id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, popularite INT, title VARCHAR(255), genre VARCHAR(255), annee_sortie VARCHAR(50), note_utilisateur VARCHAR(100), nombre_vote VARCHAR(100), histoire TEXT)")
 
 with open("imdb_video_games.csv", "r", encoding="utf-8") as file:
   df = pd.read_csv(file)
@@ -38,6 +37,7 @@ with open("imdb_video_games.csv", "r", encoding="utf-8") as file:
   df["genre"] = df["Genre"]
   df["nombre_vote"] = df["Number of Votes"]
   df["histoire"] = df["Summary"]
+  df["annee_sortie"] = df["Year"]
 
   df.to_csv("imdb_video_games1.csv", index=False)
 
@@ -59,8 +59,8 @@ with open("imdb_video_games.csv", "r", encoding="utf-8") as file:
       if row["nombre_vote"] == "":
         row["nombre_vote"] = 0
       cursor.execute(
-        "INSERT INTO video_games (popularite, title, genre, note_utilisateur, nombre_vote, histoire) VALUES (%s, %s, %s, %s, %s, %s)",
-        (row["popularite"], row["titre"], row["genre"], row["note_utilisateur"], row["nombre_vote"],
+        "INSERT INTO video_games (popularite, title, genre, annee_sortie, note_utilisateur, nombre_vote, histoire) VALUES (%s, %s, %s, %s, %s, %s, %s)",
+        (row["popularite"], row["titre"], row["genre"], row["annee_sortie"], row["note_utilisateur"], row["nombre_vote"],
          row["histoire"]))
       db_config.commit()
       percentage_done = round((i / row_count) * 100, 2)
@@ -82,9 +82,10 @@ def index():
       "popularite": row[1],
       "titre": row[2],
       "genre": row[3],
-      "note_utilisateur": row[4],
-      "nombre_vote": row[5],
-      "histoire": row[6]
+      "annee_sortie": row[4],
+      "note_utilisateur": row[5],
+      "nombre_vote": row[6],
+      "histoire": row[7]
     })
   data_df = pd.DataFrame(data)
 
