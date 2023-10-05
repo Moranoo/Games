@@ -1,6 +1,6 @@
 from textwrap import wrap
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 import mysql.connector as mysql
 import base64
 import csv
