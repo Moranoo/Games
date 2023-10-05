@@ -1,31 +1,42 @@
+<h1 class="text-5xl font-bold text-center my-11">Statistiques</h1>
+<div class="flex flex-col justify-center items-center">
+  <div class="flex flex-row justify-center items-center">
+    <img src="{{'data:image/png;base64,' + games.image_nb_vote}}" alt="graphique du nb de vote par jeu" class="w-5/12" height=""
+          width="">
+    <img src="{{'data:image/png;base64,' + games.image_note_utilisateur}}" alt="graphique des notes utilisateurs par jeu" class="w-5/12"
+         height="" width="">
+  </div>
 <h1 class="text-5xl font-bold text-center my-11">Liste des jeux</h1>
-<div class="container mx-auto my-5 justify-center items-center flex flex-row flex-wrap gap-5">
-  <div class="rounded-lg bg-slate-100 gap-5 h-full border-2 p-5 w-4/12 shadow-md transition ease-in-out hover:scale-110"
-       *ngFor="let gameList of games.data">
-    <div class="flex justify-between">
-      <div class="flex items-center">
-        <fa-icon icon="gamepad" class="text-2xl"></fa-icon>
-        <h2 class="text-xl font-bold p-2">{{gameList.titre}}</h2>
+  <div class="container mx-auto my-5 justify-center items-center flex flex-row flex-wrap gap-5">
+    <div
+      class="rounded-lg bg-slate-100 gap-5 h-full border-2 p-5 w-4/12 shadow-md transition ease-in-out hover:scale-110"
+      *ngFor="let gameList of games.data">
+      <div class="flex justify-between">
+        <div class="flex items-center">
+          <fa-icon icon="gamepad" class="text-2xl"></fa-icon>
+          <h2 class="text-xl font-bold p-2">{{gameList.titre}}</h2>
+        </div>
+        <div class="flex items-center">
+          <p class="text-xl font-bold p-2">{{gameList.note_utilisateur ? gameList.note_utilisateur : 0}}</p>
+          <fa-icon icon="star" class="text-xl text-amber-400"></fa-icon>
+        </div>
       </div>
-      <div class="flex items-center">
-        <p class="text-xl font-bold p-2">{{gameList.note_utilisateur ? gameList.note_utilisateur : 0}}</p>
-        <fa-icon icon="star" class="text-xl text-amber-400"></fa-icon>
+      <p class="text-sm">{{gameList.histoire}}</p>
+      <p class="text-sm my-2">Genre: <span class="font-bold">{{gameList.genre ? gameList.genre : "inconnu" }}</span></p>
+      <p class="text-sm my-2">Date de sortie: <span
+        class="font-bold">{{gameList.annee_sortie ? gameList.annee_sortie : "inconnue" }}</span></p>
+      <p class="text-sm mb-4">Ce jeu a reçu <span
+        class="font-bold">{{gameList.nombre_vote ? gameList.nombre_vote : 0}}</span> votes positif de la part des
+        joueurs
+      </p>
+      <div class="flex justify-center gap-2 items-center">
+        <button class="bg-blue-700 border-2 rounded-lg p-2 hover:bg-blue-900 text-white">
+          <a routerLink="/game/{{gameList.id}}">Modifier</a>
+        </button>
+        <button class="bg-red-700 border-2 rounded-lg p-2 hover:bg-red-900 text-white">
+          <a routerLink="/delete-game/{{gameList.id}}">Supprimer</a>
+        </button>
       </div>
-    </div>
-    <p class="text-sm">{{gameList.histoire}}</p>
-    <p class="text-sm my-2">Genre: <span class="font-bold">{{gameList.genre ? gameList.genre : "inconnu" }}</span></p>
-    <p class="text-sm my-2">Date de sortie: <span
-      class="font-bold">{{gameList.annee_sortie ? gameList.annee_sortie : "inconnue" }}</span></p>
-    <p class="text-sm mb-4">Ce jeu a reçu <span
-      class="font-bold">{{gameList.nombre_vote ? gameList.nombre_vote : 0}}</span> votes positif de la part des joueurs
-    </p>
-    <div class="flex justify-center gap-2 items-center">
-      <button class="bg-blue-700 border-2 rounded-lg p-2 hover:bg-blue-900 text-white">
-        <a routerLink="/game/{{gameList.id}}">Modifier</a>
-      </button>
-      <button class="bg-red-700 border-2 rounded-lg p-2 hover:bg-red-900 text-white">
-        <a routerLink="/delete-game/{{gameList.id}}">Supprimer</a>
-      </button>
     </div>
   </div>
 </div>
