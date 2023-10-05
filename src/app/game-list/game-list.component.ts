@@ -17,11 +17,13 @@ export class GameListComponent implements OnInit {
       this.gameService.getGames().subscribe(
         (data) => {
           this.games = data;
+          this.games.data.map((game: any) => {
+            game.annee_sortie = Number(game.annee_sortie)
+          });
         },
         (error) => {
           console.error(error);
         }
       );
-      console.log(this.games);
     }
 }
