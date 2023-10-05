@@ -1,1 +1,35 @@
-<p>update-game works!</p>
+<h2>Update Game</h2>
+
+<div *ngIf="updateSuccess" class="success-message">
+  Game updated successfully!
+</div>
+
+<form (ngSubmit)="updateGame()">
+  
+  <label for="titre">Titre:</label>
+  <input type="text" id="titre" [(ngModel)]="updateGameData.titre" name="titre" required>
+
+  <label for="genre">Genre:</label>
+  <input type="text" id="genre" [(ngModel)]="updateGameData.genre" name="genre" required>
+
+  <label for="popularite">Popularité:</label>
+  <input type="number" id="popularite" [(ngModel)]="updateGameData.popularite" name="popularite" required>
+
+  <label for="note_utilisateur">Note Utilisateur:</label>
+  <input type="text" id="note_utilisateur" [(ngModel)]="updateGameData.note_utilisateur" name="note_utilisateur" required>
+
+  <label for="nombre_vote">Nombre de Votes:</label>
+  <input type="number" id="nombre_vote" [(ngModel)]="updateGameData.nombre_vote" name="nombre_vote" required>
+
+  <label for="histoire">Histoire:</label>
+  <textarea id="histoire" [(ngModel)]="updateGameData.histoire" name="histoire" required></textarea>
+
+  <label for="annee_sortie">Année de Sortie:</label>
+  <input type="text" id="annee_sortie" [(ngModel)]="updateGameData.annee_sortie" name="annee_sortie" required>
+
+  <button class="bg-blue-700 border-2 rounded-lg p-2 hover:bg-blue-900 text-white" type="submit">Update Game</button>
+</form>
+
+<button class="bg-blue-700 border-2 rounded-lg p-2 hover:bg-blue-900 text-white">
+    <a routerLink="/games">Retour</a>
+</button>
