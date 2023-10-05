@@ -1,33 +1,72 @@
-<h2>Update Game</h2>
-
-<div *ngIf="updateSuccess" class="success-message">
-  Game updated successfully!
+<div *ngIf="updateSuccess" class="flex w-96 shadow-lg rounded-lg">
+  <div class="bg-green-600 py-4 px-6 rounded-l-lg flex items-center">
+    <svg xmlns="http://www.w3.org/2000/svg" class="text-white fill-current" viewBox="0 0 16 16" width="20" height="20">
+      <path fill-rule="evenodd"
+            d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
+    </svg>
+  </div>
+  <div
+    class="px-4 py-6 bg-white rounded-r-lg flex justify-between items-center w-full border border-l-transparent border-gray-200">
+    <div>Jeu mis à jour avec succès !</div>
+    <button>
+      <svg xmlns="http://www.w3.org/2000/svg" class="fill-current text-gray-700" viewBox="0 0 16 16" width="20"
+           height="20">
+        <path fill-rule="evenodd"
+              d="M3.72 3.72a.75.75 0 011.06 0L8 6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22 3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z"></path>
+      </svg>
+    </button>
+  </div>
 </div>
 
 <form (ngSubmit)="updateGame()">
-  
-  <label for="titre">Titre:</label>
-  <input type="text" id="titre" [(ngModel)]="updateGameData.titre" name="titre" required>
 
-  <label for="genre">Genre:</label>
-  <input type="text" id="genre" [(ngModel)]="updateGameData.genre" name="genre" required>
-
-  <label for="popularite">Popularité:</label>
-  <input type="number" id="popularite" [(ngModel)]="updateGameData.popularite" name="popularite" required>
-
-  <label for="note_utilisateur">Note Utilisateur:</label>
-  <input type="text" id="note_utilisateur" [(ngModel)]="updateGameData.note_utilisateur" name="note_utilisateur" required>
-
-  <label for="nombre_vote">Nombre de Votes:</label>
-  <input type="number" id="nombre_vote" [(ngModel)]="updateGameData.nombre_vote" name="nombre_vote" required>
-
-  <label for="histoire">Histoire:</label>
-  <textarea id="histoire" [(ngModel)]="updateGameData.histoire" name="histoire" required></textarea>
-
-  <label for="annee_sortie">Année de Sortie:</label>
-  <input type="text" id="annee_sortie" [(ngModel)]="updateGameData.annee_sortie" name="annee_sortie" required>
-
-  <button class="bg-blue-700 border-2 rounded-lg p-2 hover:bg-blue-900 text-white" type="submit">Update Game</button>
+  <!-- component -->
+  <div class="min-h-screen bg-gray-100 py-6 flex flex-col sm:py-12">
+    <div class="relative w-full py-3 sm:max-w-xl sm:mx-auto">
+      <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+        <div class="max-w-md mx-auto">
+          <div>
+            <h1 class="text-2xl text-center font-semibold">Mise à jour du jeu</h1>
+          </div>
+          <div class="divide-y divide-gray-200">
+            <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+              <div class="relative">
+                <input id="titre" [(ngModel)]="updateGameData.titre" name="titre" type="text" required class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Titre du jeu" />
+                <label for="titre" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Titre</label>
+              </div>
+              <div class="relative">
+                <input id="genre" [(ngModel)]="updateGameData.genre" name="genre" type="text" required class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Genre" />
+                <label for="genre" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Genre</label>
+              </div>
+              <div class="relative">
+                <input id="popularite" [(ngModel)]="updateGameData.popularite" name="popularite" type="text" required class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Popularité" />
+                <label for="popularite" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Popularité</label>
+              </div>
+              <div class="relative">
+                <input id="note_utilisateur" [(ngModel)]="updateGameData.note_utilisateur" name="note_utilisateur" type="text" required class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Note utilisateur" />
+                <label for="note_utilisateur" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Note utilisateur</label>
+              </div>
+              <div class="relative">
+                <input id="nombre_vote" [(ngModel)]="updateGameData.nombre_vote" name="nombre_vote" min="0" type="number" required class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Nombre vote" />
+                <label for="nombre_vote" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Nombre vote</label>
+              </div>
+              <div class="relative">
+                <textarea id="histoire" [(ngModel)]="updateGameData.histoire" name="histoire" required class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Résumé"></textarea>
+                <label for="histoire" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Résumé</label>
+              </div>
+              <div class="relative">
+                <input id="annee_sortie" [(ngModel)]="updateGameData.annee_sortie" name="annee_sortie" type="text" required class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Année de sortie" />
+                <label for="annee_sortie" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Année sortie</label>
+              </div>
+              <div class="flex justify-center">
+                <button class="bg-blue-500 text-white rounded-md px-2 py-1">Ajouter</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </form>
 
 <button class="bg-blue-700 border-2 rounded-lg p-2 hover:bg-blue-900 text-white">
