@@ -1,16 +1,17 @@
 <h1 class="text-5xl font-bold text-center my-11">Statistiques</h1>
 <div class="flex flex-col justify-center items-center">
-  <div class="flex flex-row justify-center items-center">
-    <img src="{{'data:image/png;base64,' + games.image_nb_vote}}" alt="graphique du nb de vote par jeu" class="w-5/12" height=""
+  <div class="flex flex-col 2xl:flex-row flex-wrap justify-center items-center">
+    <img src="{{'data:image/png;base64,' + games.image_nb_vote}}" alt="graphique du nb de vote par jeu" class="2xl:w-6/12 w-10/12" height=""
           width="">
-    <img src="{{'data:image/png;base64,' + games.image_note_utilisateur}}" alt="graphique des notes utilisateurs par jeu" class="w-5/12"
+    <img src="{{'data:image/png;base64,' + games.image_note_utilisateur}}" alt="graphique des notes utilisateurs par jeu" class="2xl:w-6/12 w-10/12"
+         height="" width="">
+    <img src="{{'data:image/png;base64,' + games.image_nb_jeux}}" alt="graphique du nombre de jeu vendu par année" class="2xl:w-6/12 w-10/12"
+         height="" width="">
+    <img src="{{'data:image/png;base64,' + games.image_nb_genre}}" alt="graphique du nombre de jeu vendu par année" class="2xl:w-6/12 w-10/12"
          height="" width="">
   </div>
 <h1 class="text-5xl font-bold text-center my-11">Liste des jeux</h1>
   <div class="container mx-auto my-5 justify-center items-center flex flex-row flex-wrap gap-5">
-    <button class="bg-red-700 border-2 rounded-lg p-2 hover:bg-red-900 text-white">
-      <a routerLink="/add-game">Ajouter !</a>
-    </button>
     <div
       class="rounded-lg bg-slate-100 gap-5 h-full border-2 p-5 w-4/12 shadow-md transition ease-in-out hover:scale-110"
       *ngFor="let gameList of games.data">
@@ -34,7 +35,10 @@
       </p>
       <div class="flex justify-center gap-2 items-center">
         <button class="bg-blue-700 border-2 rounded-lg p-2 hover:bg-blue-900 text-white">
-          <a routerLink="/update-game/{{gameList.id}}">Modifier</a>
+          <a routerLink="/game/{{gameList.id}}">Modifier</a>
+        </button>
+        <button class="bg-red-700 border-2 rounded-lg p-2 hover:bg-red-900 text-white">
+          <a routerLink="/delete-game/{{gameList.id}}">Supprimer</a>
         </button>
       </div>
     </div>
