@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GameService } from '../game.service';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-update-game',
@@ -12,11 +13,11 @@ export class UpdateGameComponent implements OnInit {
   games: any[] = [];
   selectedGameId!: number;
   updateGameData = {
-    popularite: '',
+    popularite: 0,
     note_utilisateur: '',
     titre: '',
     genre: '',
-    nombre_vote: '',
+    nombre_vote: 0,
     histoire: '',
     annee_sortie: ''
   };
@@ -27,19 +28,19 @@ export class UpdateGameComponent implements OnInit {
       this.updateGameData = { ...selectedGame };
     } else {
       this.updateGameData = {
-        popularite: '',
+        popularite: 0,
         note_utilisateur: '',
         titre: '',
         genre: '',
-        nombre_vote: '',
+        nombre_vote: 0,
         histoire: '',
         annee_sortie: ''
       };
     }
   }
-  
 
-  constructor(private gameService: GameService, private route: ActivatedRoute) { }
+
+  constructor(private gameService: GameService, private route: ActivatedRoute, private toastrService: ToastrService, private router: Router) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -59,6 +60,8 @@ export class UpdateGameComponent implements OnInit {
     this.gameService.updateGame(this.selectedGameId, this.updateGameData).subscribe(  // Et ici
       data => {
         console.log('Game updated!', data);
+        this.router.navigate(['/games']);
+        this.toastrService.success('Le jeu a bien été mis à jour !', 'Succès !', {timeOut: 3000, progressBar: true});
         this.loadGames();  // recharger la liste des jeux après la mise à jour
       },
       error => console.error(error)
