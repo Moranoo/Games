@@ -164,6 +164,31 @@ def index():
     "image_nb_genre": image_nb_genre.decode('utf-8')
   }
 
+@app.route("/api/games", methods=["POST"])
+@cross_origin()
+def create_game():
+    data = request.get_json()
+    try:
+        # remplacer (...) avec vos champs et données
+        cursor.execute("INSERT INTO video_games (...) VALUES (...)", (...))
+        db_config.commit()
+        return jsonify({"message": "Game created"}), 201
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/api/games/<int:game_id>", methods=["PUT"])
+@cross_origin()
+def update_game(game_id):
+    data = request.get_json()
+    try:
+        # remplacer (...) avec vos champs et données
+        cursor.execute("UPDATE video_games SET ... WHERE id = %s", (...))
+        db_config.commit()
+        return jsonify({"message": "Game updated"}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 
 @app.route("/get_data/<string:table_name>/", methods=["GET"])
 def get_data(table_name):
