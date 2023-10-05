@@ -36,7 +36,7 @@
       </p>
       <div class="flex justify-center gap-2 items-center">
         <button class="bg-blue-700 border-2 rounded-lg p-2 hover:bg-blue-900 text-white">
-          <a routerLink="/update-game/{{gameList.id}}">Modifier</a>
+          <a routerLink="/update-game/{{gameList.id}}" [state]="gameList">Modifier</a>
         </button>
       </div>
     </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GameService } from '../game.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToastrService} from "ngx-toastr";
+import {map} from "rxjs";
 
 @Component({
   selector: 'app-update-game',
@@ -46,6 +47,10 @@ export class UpdateGameComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.selectedGameId = +params['id']; // + pour convertir en nombre
       this.loadGames(); // Chargez les jeux ici si nécessaire
+      this.route.paramMap.pipe(
+        map(() => window.history.state)).subscribe(data => {
+        this.updateGameData = data;
+      })
     });
   }
 
