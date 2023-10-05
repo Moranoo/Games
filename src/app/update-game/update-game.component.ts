@@ -1,21 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GameService } from '../game.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-update-game',
   templateUrl: './update-game.component.html',
   styleUrls: ['./update-game.component.css']
 })
-export class UpdateGameComponent {
+export class UpdateGameComponent implements OnInit {
   updateSuccess = false;
   games: any[] = [];
-  selectedGameId: number;
+  selectedGameId!: number;
   updateGameData = {
-    popularite: null,
+    popularite: '',
     note_utilisateur: '',
     titre: '',
     genre: '',
-    nombre_vote: null,
+    nombre_vote: '',
     histoire: '',
     annee_sortie: ''
   };
@@ -26,11 +27,11 @@ export class UpdateGameComponent {
       this.updateGameData = { ...selectedGame };
     } else {
       this.updateGameData = {
-        popularite: null,
+        popularite: '',
         note_utilisateur: '',
         titre: '',
         genre: '',
-        nombre_vote: null,
+        nombre_vote: '',
         histoire: '',
         annee_sortie: ''
       };
@@ -38,12 +39,13 @@ export class UpdateGameComponent {
   }
   
 
-  constructor(private gameService: GameService) {
-    this.selectedGameId = 0;
-  }
+  constructor(private gameService: GameService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.loadGames();
+    this.route.params.subscribe(params => {
+      this.selectedGameId = +params['id']; // + pour convertir en nombre
+      this.loadGames(); // Chargez les jeux ici si nécessaire
+    });
   }
 
   loadGames() {
