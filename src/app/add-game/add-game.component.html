@@ -1,1 +1,27 @@
-<p>add-game works!</p>
+<form (ngSubmit)="createGame()">
+  <label for="titre">Titre:</label>
+  <input type="text" id="titre" name="titre" [(ngModel)]="newGame.titre" required>
+
+  <label for="genre">Genre:</label>
+  <input type="text" id="genre" name="genre" [(ngModel)]="newGame.genre" required>
+
+  <label for="popularite">Popularité:</label>
+  <input type="number" id="popularite" name="popularite" [(ngModel)]="newGame.popularite" required>
+
+  <label for="note_utilisateur">Note Utilisateur:</label>
+  <input type="text" id="note_utilisateur" name="note_utilisateur" [(ngModel)]="newGame.note_utilisateur" required>
+
+  <label for="nombre_vote">Nombre de Votes:</label>
+  <input type="number" id="nombre_vote" name="nombre_vote" [(ngModel)]="newGame.nombre_vote" required>
+
+  <label for="histoire">Histoire:</label>
+  <textarea id="histoire" name="histoire" [(ngModel)]="newGame.histoire" required></textarea>
+
+  <label for="annee_sortie">Année de Sortie:</label>
+  <input type="text" id="annee_sortie" name="annee_sortie" [(ngModel)]="newGame.annee_sortie" required>
+
+  <button type="submit">Créer le Jeu</button>
+</form>
+<button class="bg-blue-700 border-2 rounded-lg p-2 hover:bg-blue-900 text-white">
+  <a routerLink="/games">Retour</a>
+</button>
